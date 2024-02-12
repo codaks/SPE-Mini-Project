@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'calculators'
-        GITHUB_REPO_URL = 'https://github.com/codaks/calculator.git'
+        DOCKER_IMAGE_NAME = 'react_calculators'
+        GITHUB_REPO_URL = 'https://github.com/codaks/SPE-Mini-Project.git'
     }
 
     stages {
@@ -29,8 +29,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'DockerHubCred') {
-                    sh 'docker tag calculators chitranshkul07/calculators:latest'
-                    sh 'docker push chitranshkul07/calculators'
+                    sh 'docker tag react_calculators chitranshkul07/react_calculators:latest'
+                    sh 'docker push chitranshkul07/react_calculators'
                     }
                  }
             }
