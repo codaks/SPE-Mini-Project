@@ -19,4 +19,4 @@
         name: docker
         state: started
     - name: Running container
-      shell: docker run -it -d --name react_calculators chitranshkul07/react_calculators
+      shell: docker run -it -d --name react_calculators1 chitranshkul07/react_calculators
