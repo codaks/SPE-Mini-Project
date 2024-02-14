@@ -37,8 +37,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'DockerHubCred') {
-                    sh 'docker tag react_calculators vickypanchal/react_calculators:latest'
-                    sh 'docker push vickypanchal/react_calculators'
+                    sh 'docker tag react_calculators chitranshkul07/react_calculators:latest'
+                    sh 'docker push chitranshkul07/react_calculators'
                     }
                  }
             }
