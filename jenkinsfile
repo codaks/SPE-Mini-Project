@@ -1,9 +1,10 @@
 pipeline {
     agent any
-
+    tools {nodejs "nodejs"}
     environment {
         DOCKER_IMAGE_NAME = 'react_calculators'
         GITHUB_REPO_URL = 'https://github.com/codaks/SPE-Mini-Project.git'
+        DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
     }
 
     stages {
@@ -15,13 +16,20 @@ pipeline {
                 }
             }
         }
-
+    
         stage('Build Docker Image') {
             steps {
-                script {
-                    // Build Docker image
-                    docker.build("${DOCKER_IMAGE_NAME}", '.')
-                }
+                sh '''
+                docker build -t react_calculators .
+                '''
+            }
+        }
+
+        stage('Testing') {
+            steps {
+                sh '''
+                npm run test
+                '''
             }
         }
 
@@ -29,8 +37,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'DockerHubCred') {
-                    sh 'docker tag react_calculators chitranshkul07/react_calculators:latest'
-                    sh 'docker push chitranshkul07/react_calculators'
+                    sh 'docker tag react_calculators vickypanchal/react_calculators:latest'
+                    sh 'docker push vickypanchal/react_calculators'
                     }
                  }
             }
@@ -46,6 +54,5 @@ pipeline {
                 }
             }
         }
-
     }
 }
