@@ -4,7 +4,7 @@ import App from './App';
 
 test('renders calculator with initial display value', () => {
   const { getByText } = render(<App />);
-  const displayElement = getByText(/0/i);
+  const displayElement = getByText(/IIIT B Calculato/i);
   expect(displayElement).toBeInTheDocument();
 });
 
